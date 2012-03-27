@@ -1,0 +1,18 @@
+
+{#{% load testtag %}#}
+
+{% if user.is_anonymous %}
+<dd div class="operation">
+    <a href="/accounts/login/">ログインする</a>
+</dd>
+<hr />
+{% else %}
+<p>username: <b>{{ user.username }}</b>
+    <a href="/accounts/logout/"> [ログアウト]</a>
+</p>
+<hr />
+
+<!-- かすたむたぐ -->
+{#    {% upper %} This will appear in uppercase, {{ user.id }}, {{ user.password }}, {{ user.id }} {% endupper %}#}
+
+{% endif %}
