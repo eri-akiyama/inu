@@ -9,5 +9,5 @@ from django.conf.urls.defaults import *
 #
 urlpatterns = patterns('inu2.top.views',
     # トップ
-    (r'$', 'index'),
+    url(r'$', 'index', name="top_index"),
 )
