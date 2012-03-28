@@ -14,15 +14,11 @@ from django.shortcuts import render_to_response
 #------------------------------------------------
 def index(request):
     if request.user.is_authenticated():
-    # Do something for authenticated users.
-        request = 1
 #        print 'ログインしてる'
-        return render_to_response('top/index.html', {"request":request})
+        return render_to_response('prof/index.html', {"request":request})
     else:
-        # Do something for anonymous users.
-        request = 0
 #        print 'ログインしてない'
-        return render_to_response('top/index.html', {"request":request})
+        return render_to_response('accounts/login.html', {"request":request})
 
 
 
