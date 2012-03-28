@@ -15,7 +15,6 @@ from django.shortcuts import render_to_response
 #------------------------------------------------
 def index(request):
     b = request.user.is_anonymous()
-    #    if b == True:
     print b
     return render_to_response('top/index.html', {"request":request})
 
