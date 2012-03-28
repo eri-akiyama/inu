@@ -1,4 +1,3 @@
-
 # -*- encoding: utf-8 -*-
 
 #=====================================================
@@ -16,8 +15,22 @@ from django.shortcuts import render_to_response
 def index(request):
     if request.user.is_authenticated():
     # Do something for authenticated users.
-    return render_to_response('top/index.html', {"request":request})
-
+        request = 1
+#        print 'ログインしてる'
+        return render_to_response('top/index.html', {"request":request})
     else:
-    # Do something for anonymous users.
-    return render_to_response('top/index.html', {"request":request})
+        # Do something for anonymous users.
+        request = 0
+#        print 'ログインしてない'
+        return render_to_response('top/index.html', {"request":request})
+
+
+
+#def index(request):
+#    if request.user.is_authenticated():
+#    # Do something for authenticated users.
+#    return render_to_response('top/index.html', {"request":request})
+#
+#    else:
+#    # Do something for anonymous users.
+#    return render_to_response('top/index.html', {"request":request})

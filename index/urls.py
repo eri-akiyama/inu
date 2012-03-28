@@ -4,10 +4,8 @@
 from django.conf.urls.defaults import *
 
 
-# http://localhost:8000/top/
-
-#
-urlpatterns = patterns('inu2.top.views',
+# http://localhost:8000/index/
+urlpatterns = patterns( 'inu2.index.views',
     # トップ
     (r'$', 'index'),
 )
