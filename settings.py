@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 # Django settings for inu2 project.
 
 DEBUG = True
@@ -89,7 +90,8 @@ SECRET_KEY = '!!_9%w_3i$0&(xog@%!u#py^kn23ba(tv!-!6dyqorx7ac&@cq'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
+    #'/Users/akiyama/PycharmProjects/inu2/templates', # 自分の環境に合わせて変更してください。
 )
 
 MIDDLEWARE_CLASSES = (
@@ -117,13 +119,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-
     'inu2',
-    'inu2.accounts'
+    'inu2.accounts',
+    'inu2.prof',
 )
 
 # A sample logging configuration. The only tangible logging
