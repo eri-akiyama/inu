@@ -149,5 +149,5 @@ LOGGING = {
 }
 
 
-LOGIN_REDIRECT_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/prof/"
 LOGIN_URL = "/accounts/login/"
