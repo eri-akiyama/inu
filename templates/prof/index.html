@@ -1,12 +1,24 @@
 <h1>★プロフ管理ページ★</h1>
 <!-- コンテンツ -->
-
+{% if latest_prof_list %}
+        
 <ul>
-    <li><a href="/accounts/login/"> loginする </a></li>
+    <li><a href="/accounts/logout/"> logoutする </a></li>
 </ul>
 
 <hr/>
-
+    {% for prof_data in latest_prof_list %}
+        <li>{{prof_data.id}}</li>
+        <li>{{prof_data.name}}</li>
+        <li>{{prof_data.birthday}}</li>
+        <li>{{prof_data.blood_type}}</li>
+        <li>{{prof_data.hobby}}</li>
+        <li>{{prof_data.favorite_food}}</li>
+    {% endfor %}
+{% else %}
+    <p>データがありません。</p>
+{% endif %}
+<hr/>
 <!-- 管理 -->
 <a href="/admin/"> 管理画面 </a>
 
