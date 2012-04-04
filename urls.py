@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('inu2.views.root',
     # プログ公開ページ
-    url(r'^(?P<prof_id>\d+)/$', 'prof_index', nama='prof_index'),
+    # url(r'^(?P<prof_id>\d+)/$', 'prof_index', nama='prof_index'),
 )
 
 urlpatterns += patterns('inu2.views.prof',
