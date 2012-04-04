@@ -12,5 +12,7 @@ urlpatterns = patterns('',
 
     #
     # account : http://127.0.0.1:8000/account/
+    ( 'newac/$', ('inu2.accounts.views.newac') ),
     ( '$', ('inu2.top.views.index') ),
+
 )

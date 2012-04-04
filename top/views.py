@@ -16,7 +16,7 @@ from django.shortcuts import render_to_response
 def index(request):
     b = request.user.is_anonymous()
     print b
-    return render_to_response('top/index.html', {"request":request})
+    return render_to_response('index/index.html', {"request":request})
 
 #------------------------------------------------
 # @breaf : 各トップページへ遷移

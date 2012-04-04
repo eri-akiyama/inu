@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'inu2',
     'inu2.accounts',
     'inu2.prof',
+
 )
 
 # A sample logging configuration. The only tangible logging

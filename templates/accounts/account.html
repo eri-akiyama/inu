@@ -1,0 +1,28 @@
+{% if data_all %}
+
+
+<ul>
+    {% for data in data_all %}
+    <li><a href="/accounts/{{data_all.id}}/">{{data_all.id}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
+
+<div class="validation">
+
+    <form action="" method="post">
+        <label for="username">ユーザ名：</label> {{ form.username }} <br/>
+        <input type="submit" value="ログイン"/>
+
+    </form>
+
+</div>
+<button>すでに登録済みの方はこちら</button>
+<br/>
+<hr>
+<a href="/index/"> インデックス画面へ </a>
+
+
+
