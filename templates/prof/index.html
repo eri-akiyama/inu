@@ -1,8 +1,7 @@
 <h1>★プロフ管理ページ★</h1>
-
+{{ hoge }}
 <p>{{ data_all.name }} さんがログイン中です。</p>
 {% if data_all %}
-
 <form action="" method="post">
     <!-- コンテンツ -->
     <!--{% if use_data == user_id%}-->
@@ -28,16 +27,14 @@
 
 {% endif %}
 
-<ul>
-    <li><a href="/accounts/logout/"> logoutする </a></li>
-</ul>
-
-
 
 {% else %}
     <p>データがありません。</p>
 {% endif %}
 <hr/>
+<ul>
+    <li><a href="/accounts/logout/"> logoutする </a></li>
+</ul>
 <!-- 管理 -->
 <a href="/admin/"> 管理画面 </a>
 
