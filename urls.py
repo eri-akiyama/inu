@@ -27,6 +27,7 @@ urlpatterns += patterns('inu2.views.accounts',
 
 urlpatterns += patterns('django.contrib.auth.views',
     # ログイン
+    ('$', 'login', {'template_name': 'accounts/login.html'} ),
     ('accounts/login/$', 'login', {'template_name': 'accounts/login.html'} ),
     # ログアウト
     ('accounts/logout/$', 'logout', {'template_name': 'accounts/logout.html'} ),
