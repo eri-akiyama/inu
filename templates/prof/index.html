@@ -1,35 +1,33 @@
 <h1>★プロフ管理ページ★</h1>
-{{ hoge }}
-<p>{{ l_name }} さんがログイン中です。</p>
+<p>{{ data.name }} さんがログイン中です。</p>
 
-{% if l_name %}
+{% if data %}
 <form action="{% url prof_edit %}" method="post">
     <!-- コンテンツ -->
-    <li>ID:{{l_id}}</li>
-    <input type="hidden" value="{{l_id}}" name="l_id"/>
+    <li>ID:{{ data.id }}</li>
+    <input type="hidden" value="{{ data.id }}" name="l_id"/>
 
     <li>名前:</li>
-    <input value="{{l_name}}" type="text" name="l_name" />
+    <input value="{{ data.name }}" type="text" name="l_name" />
 
     <li>生年月日: </li>
-    <input value="{{l_birthday}}" type="text" name="l_birthday" />
+    <input value="{{ data.birthday }}" type="text" name="l_birthday" />
 
     <li>血液型:</li>
-    <input value="{{l_blood_type}}" type="text" name="l_blood_type" />
+    <input value="{{ data.blood_type }}" type="text" name="l_blood_type" />
 
     <li>趣味:</li>
-    <input value="{{l_hobby}}" type="text" name="l_hobby" />
+    <input value="{{ data.hobby }}" type="text" name="l_hobby" />
 
     <li>好きな食べ物:</li>
-    <input value="{{l_favorite_food}}" type="text" name="l_favorite_food" />
+    <input value="{{ data.favorite_food }}" type="text" name="l_favorite_food" />
 
     <input name="comment" value="編集" type="submit" />
 </form>
-
-
 {% else %}
     <p>データがありません。</p>
 {% endif %}
+
 <hr/>
 <ul>
     <li><a href="/accounts/logout/"> logoutする </a></li>
