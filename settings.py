@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'inu2',
     'inu2.views',
+    'inu2.prof',
 )
 
 # A sample logging configuration. The only tangible logging

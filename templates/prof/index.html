@@ -1,31 +1,30 @@
 <h1>★プロフ管理ページ★</h1>
 {{ hoge }}
-<p>{{ data_all.name }} さんがログイン中です。</p>
-{% if data_all %}
-<form action="" method="post">
+<p>{{ l_name }} さんがログイン中です。</p>
+
+{% if l_name %}
+<form action="{% url prof_edit %}" method="post">
     <!-- コンテンツ -->
-    <!--{% if use_data == user_id%}-->
-    <li>ID: {{data_all.id}}</li>
+    <li>ID:{{l_id}}</li>
+    <input type="hidden" value="{{l_id}}" name="l_id"/>
 
-    <li>名前: {{data_all.name}}</li>
-    <input value="{{data_all.name}}" type="text" name="name" />
+    <li>名前:</li>
+    <input value="{{l_name}}" type="text" name="l_name" />
 
-    <li>生年月日: {{data_all.birthday}}</li>
-    <input value="{{data_all.birthday}}" type="text" name="birthday" />
+    <li>生年月日: </li>
+    <input value="{{l_birthday}}" type="text" name="l_birthday" />
 
-    <li>血液型: {{data_all.blood_type}}</li>
-    <input value="{{data_all.blood_type}}" type="text" name="blood_type" />
+    <li>血液型:</li>
+    <input value="{{l_blood_type}}" type="text" name="l_blood_type" />
 
-    <li>趣味: {{data_all.hobby}}</li>
-    <input value="{{data_all.hobby}}" type="text" name="hobby" />
+    <li>趣味:</li>
+    <input value="{{l_hobby}}" type="text" name="l_hobby" />
 
-    <li>好きな食べ物: {{data_all.favorite_food}}</li>
-    <input value="{{data_all.favorite_food}}" type="text" name="favorite_food" />
+    <li>好きな食べ物:</li>
+    <input value="{{l_favorite_food}}" type="text" name="l_favorite_food" />
 
     <input name="comment" value="編集" type="submit" />
 </form>
-
-{% endif %}
 
 
 {% else %}

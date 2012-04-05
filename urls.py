@@ -12,6 +12,8 @@ urlpatterns = patterns('inu2.views.root',
 urlpatterns += patterns('inu2.views.prof',
     # プロフ管理ページ
     url(r'prof/admin/$', 'prof_admin', name="prof_admin"),
+    # プロフ編集ページ
+    url(r'prof/index/$', 'prof_edit', name="prof_edit"),
 )
 
 urlpatterns += patterns('inu2.views.accounts',
