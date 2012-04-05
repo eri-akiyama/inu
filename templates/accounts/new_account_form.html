@@ -1,0 +1,16 @@
+<h1>★新規登録ページ★</h1>
+
+<form action="{% url new_account %}" method="post">
+    ユーザ名：<input type="text" name="username" value="" /><br/>
+    E-mail：<input type="text" name="email" value="" /><br/>
+    パスワード：<input type="text" name="password" value="" /><br/>
+    <input type="submit" value="確認"/>
+</form>
+
+<hr/>
+<ul>
+    <li><a href="/accounts/login/"> loginする </a></li>
+</ul>
+<!-- 管理 -->
+<a href="/admin/"> 管理画面 </a>
+

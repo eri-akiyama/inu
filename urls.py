@@ -14,6 +14,13 @@ urlpatterns += patterns('inu2.views.prof',
     url(r'prof/admin/$', 'prof_admin', name="prof_admin"),
 )
 
+urlpatterns += patterns('inu2.views.accounts',
+    # 新規ユーザ登録ページ
+    url(r'accounts/new/$', 'new_account_form', name="new_account_form"),
+
+    # 新規ユーザ確認ページ
+    url(r'accounts/new_account/$', 'new_account', name="new_account"),
+)
 # Django が 既にviewを用意してくれてるぞ！======================================
 
 urlpatterns += patterns('django.contrib.auth.views',
