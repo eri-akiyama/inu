@@ -10,3 +10,14 @@ class Prof_data2(models.Model):
     favorite_food = models.CharField(max_length=200,unique=True)
     auth_id = models.IntegerField(max_length=20,unique=True)
 
+    @classmethod
+    def get_prof_data(cls, user_id):
+        if not user_id:
+            return None
+
+        try:
+            prof_data = cls.objects.get(auth_id=user_id)
+        except:
+            return None
+
+        return prof_data
