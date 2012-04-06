@@ -1,10 +1,29 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<h1>★プロフ編集確認ページ★</h1>
+<p>{{ l_name }} さんがログイン中です。</p>
 
-</body>
-</html>
+{% if data %}
+    <!-- コンテンツ -->
+    <li>ID:{{ l_id }}</li>
+
+    <li>名前:{{ l_name }}</li>
+
+    <li>生年月日: {{ l_birthday }}</li>
+
+    <li>血液型:{{ l_hobby }}</li>
+
+    <li>趣味:{{ l_blood_type }}</li>
+
+    <li>好きな食べ物:{{ l_favorite_food }}</li>
+
+</form>
+{% else %}
+<p>変更データがありません。</p>
+{% endif %}
+
+<hr/>
+<ul>
+    <li><a href="/accounts/logout/"> logoutする </a></li>
+</ul>
+<!-- 管理 -->
+<a href="/admin/"> 管理画面 </a>
+

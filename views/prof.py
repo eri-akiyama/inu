@@ -6,6 +6,9 @@ from django.shortcuts import render_to_response
 
 from django.contrib.auth.decorators import login_required
 from inu2.prof.models import Prof_data2
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
 
 # TODO 使ってないからとりあえずコメントアウト
 # from django.db import IntegrityError
@@ -39,13 +42,10 @@ def prof_admin(request):
     return render_to_response('prof/index.html', ctxt)
 
 
-#　新規登録された情報表示
-# TODO このページはログインしていなくても閲覧できるページかな？
-def prof_results(context_instance):
-    return render_to_response('prof/prof_results.html', context_instance)
 
 
 #　プロフ編集情報をフォームから登録
+@login_required()
 def prof_edit(request):
 
     # リクエストメソッドがPOSTじゃないときは処理させない
@@ -61,20 +61,38 @@ def prof_edit(request):
     l_favorite_food = request.POST.get('l_favorite_food')
 
     # TODO 修正すべきprof_dataを取得する。
+    prof_data = Prof_data2.get_prof_data(l_id)
 
     # TODO prof_dataに受け取ったユーザー情報を入れていく。
+    prof_data.id = l_id
+    prof_data.name = l_name
+    # datetime処理をする！
+    prof_data.birthday =  '1999-1-1' #l_birthday
+    prof_data.blood_type = l_blood_type
+    prof_data.hobby = l_hobby
+    prof_data.favorite_food = l_favorite_food
+
 
     # TODO 修正が終わったらprof_dataセーブする
-    # prof_data.save()
-
-    context_instance = RequestContext(request, {
-        'l_id':l_id,
-        'l_name':l_name,
-        'l_birthday':l_birthday,
-        'l_hobby':l_hobby,
-        'l_blood_type':l_blood_type,
-        'l_favorite_food':l_favorite_food
-    })
+    prof_data.save()
 
     # TODO Redirectという処理でこの処理に戻らないようにする
-    return prof_results(context_instance)
+    return HttpResponseRedirect(reverse('prof_results', args=(l_id,)))
+
+#    return prof_results(context_instance)
+
+
+#　プロフ編集された情報表示
+# TODO このページはログインしていなくても閲覧できるページかな？
+#@login_required()
+def prof_results(context_instance,l_id):
+
+
+    # 表示するprof_dataを取得する。
+    prof_data = Prof_data2.get_prof_data(l_id)
+
+    context_instance = RequestContext(context_instance, {
+        'prof_data':prof_data
+    })
+    return render_to_response('prof/prof_results.html', context_instance = context_instance)
+#    return prof_results(context_instance)
