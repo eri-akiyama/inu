@@ -9,6 +9,10 @@ from inu2.prof.models import Prof_data2
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
+import time
+import datetime
+
+
 
 # TODO 使ってないからとりあえずコメントアウト
 # from django.db import IntegrityError
@@ -38,36 +42,37 @@ def prof_admin(request):
     ctxt = RequestContext(request, {
         "user_id": user_id,
         "data": data,
+        "birthday":data.birthday,
     })
     return render_to_response('prof/index.html', ctxt)
-
-
 
 
 #　プロフ編集情報をフォームから登録
 @login_required()
 def prof_edit(request):
-
+    print "prof_edit haittayo"
     # リクエストメソッドがPOSTじゃないときは処理させない
     if not request.method == "POST":
         return HttpResponse(u"POSTしないとだめよ!!")
 
     # ポストされてきたユーザー情報
     l_id = request.POST.get('l_id')
+    user_id = request.POST.get('user_id')
     l_name = request.POST.get('l_name')
     l_birthday = request.POST.get('l_birthday')
     l_blood_type = request.POST.get('l_blood_type')
     l_hobby = request.POST.get('l_hobby')
     l_favorite_food = request.POST.get('l_favorite_food')
 
+    _date = time.strptime(l_birthday, '%Y%m%d')
+    day = datetime.date(_date[0], _date[1], _date[2]) #=> 2009年3月18日
+
     # TODO 修正すべきprof_dataを取得する。
-    prof_data = Prof_data2.get_prof_data(l_id)
+    prof_data = Prof_data2.get_prof_data(user_id)
 
     # TODO prof_dataに受け取ったユーザー情報を入れていく。
-    prof_data.id = l_id
-    prof_data.name = l_name
     # datetime処理をする！
-    prof_data.birthday =  '1999-1-1' #l_birthday
+    prof_data.birthday = day  #'1999-1-1'
     prof_data.blood_type = l_blood_type
     prof_data.hobby = l_hobby
     prof_data.favorite_food = l_favorite_food
@@ -75,24 +80,21 @@ def prof_edit(request):
 
     # TODO 修正が終わったらprof_dataセーブする
     prof_data.save()
-
     # TODO Redirectという処理でこの処理に戻らないようにする
-    return HttpResponseRedirect(reverse('prof_results', args=(l_id,)))
-
-#    return prof_results(context_instance)
+    return HttpResponseRedirect(reverse('prof_results', args=[user_id],))
 
 
 #　プロフ編集された情報表示
 # TODO このページはログインしていなくても閲覧できるページかな？
 #@login_required()
-def prof_results(context_instance,l_id):
+def prof_results(context_instance,user_id):
 
-
+    print "kokoha results"
+    print user_id
     # 表示するprof_dataを取得する。
-    prof_data = Prof_data2.get_prof_data(l_id)
-
+    prof_data = Prof_data2.get_prof_data(user_id)
     context_instance = RequestContext(context_instance, {
-        'prof_data':prof_data
+        'prof_data':prof_data,
     })
+
     return render_to_response('prof/prof_results.html', context_instance = context_instance)
-#    return prof_results(context_instance)

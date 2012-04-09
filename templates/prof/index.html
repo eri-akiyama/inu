@@ -4,14 +4,15 @@
 {% if data %}
 <form action="{% url prof_edit %}" method="post">
     <!-- コンテンツ -->
-    <li>ID:{{ data.id }}</li>
+    <li>ID:{{ user_id }}</li>
+    <input type="hidden" value="{{ user_id }}" name="user_id"/>
     <input type="hidden" value="{{ data.id }}" name="l_id"/>
 
     <li>名前:</li>
     <input value="{{ data.name }}" type="text" name="l_name" />
 
     <li>生年月日: </li>
-    <input value="{{ data.birthday }}" type="text" name="l_birthday" />
+    <input value="{{ birthday }}" type="text" name="l_birthday" />
 
     <li>血液型:</li>
     <input value="{{ data.blood_type }}" type="text" name="l_blood_type" />

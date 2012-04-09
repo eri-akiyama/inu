@@ -1,19 +1,19 @@
 <h1>★プロフ編集確認ページ★</h1>
-<p>{{ l_name }} さんがログイン中です。</p>
+<p>{{ prof_data.name }} さんがログイン中です。</p>
 
-{% if data %}
+{% if prof_data %}
     <!-- コンテンツ -->
-    <li>ID:{{ l_id }}</li>
+    <li>ID:{{ prof_data.auth_id }}</li>
 
-    <li>名前:{{ l_name }}</li>
+    <li>名前:{{ prof_data.name }}</li>
 
-    <li>生年月日: {{ l_birthday }}</li>
+    <li>生年月日: {{ prof_data.birthday }}</li>
 
-    <li>血液型:{{ l_hobby }}</li>
+    <li>血液型:{{ prof_data.blood_type }}</li>
 
-    <li>趣味:{{ l_blood_type }}</li>
+    <li>趣味:{{ prof_data.hobby }}</li>
 
-    <li>好きな食べ物:{{ l_favorite_food }}</li>
+    <li>好きな食べ物:{{ prof_data.favorite_food }}</li>
 
 </form>
 {% else %}
@@ -22,6 +22,7 @@
 
 <hr/>
 <ul>
+    <li><a href="/prof/admin/"> 編集画面へ戻る </a></li>
     <li><a href="/accounts/logout/"> logoutする </a></li>
 </ul>
 <!-- 管理 -->

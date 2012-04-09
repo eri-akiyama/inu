@@ -7,7 +7,7 @@ class Prof_data2(models.Model):
     birthday = models.DateField('%Y/%m/%d')
     blood_type = models.CharField(max_length=20)
     hobby = models.CharField(max_length=200)
-    favorite_food = models.CharField(max_length=200) #uniqueをdbから削除する（手動で）
+    favorite_food = models.CharField(max_length=200)
     auth_id = models.IntegerField(max_length=20,unique=True)
 
     @classmethod
