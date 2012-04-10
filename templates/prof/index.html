@@ -1,7 +1,8 @@
 <h1>★プロフ管理ページ★</h1>
-<p>{{ data.name }} さんがログイン中です。</p>
 
 {% if data %}
+<p>{{ data.name }} さんがログイン中です。</p>
+
 <form action="{% url prof_edit %}" method="post">
     <!-- コンテンツ -->
     <li>ID:{{ user_id }}</li>
@@ -12,7 +13,7 @@
     <input value="{{ data.name }}" type="text" name="l_name" />
 
     <li>生年月日: </li>
-    <input value="{{ birthday }}" type="text" name="l_birthday" />
+    <input value="{{ data.birthday }}" type="text" name="l_birthday" />
 
     <li>血液型:</li>
     <input value="{{ data.blood_type }}" type="text" name="l_blood_type" />
@@ -23,10 +24,37 @@
     <li>好きな食べ物:</li>
     <input value="{{ data.favorite_food }}" type="text" name="l_favorite_food" />
 
-    <input name="comment" value="編集" type="submit" />
+    <input name="comment" value="登録" type="submit" />
 </form>
 {% else %}
-    <p>データがありません。</p>
+    <p>新規プロフィールをしてください。</p>
+
+<p>{{ user_name }} さんがログイン中です。</p>
+
+<form action="{% url prof_edit %}" method="post">
+    <!-- コンテンツ -->
+    <li>ID:{{ user_id }}</li>
+    <input type="hidden" value="{{ user_id }}" name="user_id"/>
+    <input type="hidden" value="{{ data.id }}" name="l_id"/>
+
+    <li>名前:</li>
+    <input value="{{ user_name }}" type="text" name="l_name" />
+
+
+    <li>生年月日: </li>
+    <input value="{{ data.birthday }}" type="text" name="l_birthday" />
+
+    <li>血液型:</li>
+    <input value="{{ data.blood_type }}" type="text" name="l_blood_type" />
+
+    <li>趣味:</li>
+    <input value="{{ data.hobby }}" type="text" name="l_hobby" />
+
+    <li>好きな食べ物:</li>
+    <input value="{{ data.favorite_food }}" type="text" name="l_favorite_food" />
+
+    <input name="comment" value="登録" type="submit" />
+</form>
 {% endif %}
 
 <hr/>

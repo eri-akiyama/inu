@@ -25,6 +25,8 @@ import datetime
 @login_required()
 def prof_admin(request):
     # 認証されたユーザーのIDを取得する。
+    # user_idはauth_userテーブルのid
+    # prof_prof_dataテーブルのauth_id
     user_id = request.user.id
 
     # ユーザーIDからprof_dataを取得する。
@@ -33,16 +35,24 @@ def prof_admin(request):
     # SELECT * FROM prof_prof_data2 WHERE auth_id = user_id;
     data = Prof_data2.get_prof_data(user_id)
 
-    # prof_dataがなかったら表示する。
+    # prof_dataがなかったらからのフォームを表示する。
     if data is None:
-         return HttpResponse(u"DoseNotExist at ProfData user_id:%s" % user_id)
+        user_name = request.user.username
+        ctxt = RequestContext(request, {
+            "user_id": user_id,
+            "user_name":user_name,
+            "data": data,
+            })
+        return render_to_response('prof/index.html', ctxt)
+
+#         return HttpResponse(u"DoseNotExist at ProfData user_id:%s" % user_id)
 
     # 取得したデータを表示するように、コンテキストで格納する
     # ctxt = RequestContext(request, { "key1": value1, "key2": value2, })
     ctxt = RequestContext(request, {
         "user_id": user_id,
         "data": data,
-        "birthday":data.birthday,
+#        "birthday":data.birthday,
     })
     return render_to_response('prof/index.html', ctxt)
 
@@ -64,19 +74,28 @@ def prof_edit(request):
     l_hobby = request.POST.get('l_hobby')
     l_favorite_food = request.POST.get('l_favorite_food')
 
+    print "l_birthday dayo"
+    print l_birthday
+    print type(l_birthday)
     _date = time.strptime(l_birthday, '%Y%m%d')
     day = datetime.date(_date[0], _date[1], _date[2]) #=> 2009年3月18日
-
+    print day
     # TODO 修正すべきprof_dataを取得する。
-    prof_data = Prof_data2.get_prof_data(user_id)
+    # 新規の時はdbに追加して、すでにあるデータは編集できるようにする。
+    prof_data, created = Prof_data2.get_or_create_prof_date(user_id)
+    print created
+    #prof_data = Prof_data2.get_prof_data(user_id)
+
 
     # TODO prof_dataに受け取ったユーザー情報を入れていく。
     # datetime処理をする！
     prof_data.birthday = day  #'1999-1-1'
+    print "(prof_data.birthday)"
+    print type(prof_data.birthday)
+    print prof_data.birthday
     prof_data.blood_type = l_blood_type
     prof_data.hobby = l_hobby
     prof_data.favorite_food = l_favorite_food
-
 
     # TODO 修正が終わったらprof_dataセーブする
     prof_data.save()

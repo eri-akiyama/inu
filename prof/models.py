@@ -21,3 +21,15 @@ class Prof_data2(models.Model):
             return None
 
         return prof_data
+
+    @classmethod
+    def get_or_create_prof_date(cls, user_id):
+        if not user_id:
+            return None
+        try:
+            prof_data = cls.objects.get(auth_id=user_id)
+            created = False
+        except:
+            prof_data = cls.objects.create(auth_id=user_id)
+            created = True
+        return prof_data, created
